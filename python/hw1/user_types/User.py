@@ -1,6 +1,6 @@
 import uuid 
-from Contact import Contact
-from PhoneBook import PhoneBook
+from book_struct.Contact import Contact
+from book_struct.PhoneBook import PhoneBook
 
 
 class User:

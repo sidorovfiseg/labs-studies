@@ -1,5 +1,5 @@
 
-from User import User
+from .User import User
 
 class Admin(User):
   def __init__(self, name: str) -> None:

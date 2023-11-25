@@ -1,6 +1,6 @@
-from Contact import Contact
-from User import User
-from Admin import Admin
+from book_struct.Contact import Contact
+from user_types.User import User
+from user_types.Admin import Admin
 
 def main() -> None:
   user = User("egor")
