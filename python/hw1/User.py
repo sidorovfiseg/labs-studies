@@ -26,6 +26,9 @@ class User:
   def get_user_id(self) -> uuid.UUID:
     return self.__user_id
   
+  def get_phone_book(self, book_tag: str) -> PhoneBook:
+    return self.__phone_books.get(book_tag) 
+  
   def add_friend(self, user: 'User') -> None:
     self.__friend_list.append(user)
     
