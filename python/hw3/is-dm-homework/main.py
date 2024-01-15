@@ -48,18 +48,31 @@ def main():
 
     print("Done!")
     
-
+# Чтение заданий из папки заданий, возвращение двумерного массива с результатом чтения
+# Переделан форматированный ввод
 def readTasks():
     result = []
     totalTasks = len(os.listdir('tasks'))
-    print(totalTasks+1)
-    for i in range(1,totalTasks):
+    print(totalTasks)
+    for i in range(0,totalTasks):
         result.append([])
-        totalVariants = len(os.listdir('tasks/%d' % i))
-        for k in range(1,totalVariants):
-            result[i-1].append(readFile('tasks/%d/%d.tex' % (i,k)))
+        totalVariants = len(os.listdir(f'tasks/{i + 1}'))
+        for k in range(0,totalVariants):
+            result[i].append(readFile(f'tasks/{i + 1}/{k + 1}.tex'))
     return result
 
+def readDir(dirName):
+    result = []
+    subdirs = os.listdir(dirName)
+    for i in range(len(subdirs)):
+        result.append([])
+        subdir_files = os.listdir(f'{dirName}/{subdirs[i]}')
+        for j in range(len(subdir_files)):
+            result[i].append(readFile(f'{dirName}/{subdirs[i]}/{subdir_files[j]}.tex'))
+    return result
+    
+
+# Чтение списка студентов, возвращение массива студентов
 def readStudents():
     file = io.open("students.txt", encoding='utf-8')
     result = file.readlines()
@@ -81,6 +94,7 @@ def generateVariant(counts):
         result.append(random.randint(1,counts[i]))
     return tuple(result)
 
+# Чтение файла и возвращение содержимого
 def readFile(name):
     file = io.open(name, encoding='utf-8')
     text = file.read()
